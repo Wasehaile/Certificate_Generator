@@ -4,7 +4,7 @@ import Button from '../components/Button'
 
 const Container = () => {
   return (
-    <div className='w-full h-screen flex items-center gap-5 justify-center flex-col'>
+    <div className='w-full h-screen bg-slate-100 flex items-center gap-5 justify-center flex-col'>
         <Input/>
         <Button/>
     </div>
