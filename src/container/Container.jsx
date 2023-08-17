@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import Certificate from '../assets/Certificate.png'
+import { PDFController } from "../controller/pdfController";
 
 const Container = () => {
+  const [name,setName]=useState('')
+  
+  const handleName=(e)=>{
+    setName(e.target.value)
+  }
   return (
     <div className="w-full h-screen flex items-center gap-5 justify-center flex-col">
      <img className="w-32" src={Certificate} alt=""/>
@@ -11,8 +17,8 @@ const Container = () => {
         <h1 className="font-bold text-slate-700 text-xl">Generate Your Certificate</h1>
         <h2 className="text-sm font-light">This is a program to generate custom certificate</h2>
       </div>
-      <Input />
-      <Button />
+      <Input onChange={handleName}/>
+      <Button onClick={()=>PDFController(name)}/>
     </div>
   );
 };
