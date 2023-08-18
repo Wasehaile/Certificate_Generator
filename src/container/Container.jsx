@@ -39,7 +39,7 @@ const Container = () => {
           This is a program to generate custom certificate
           
         </h2>
-        <p className="font-semibold text-slate-400"> select a template</p>
+        <p className="font-semibold text-slate-400 capitalize"> select a template</p>
         <div className="flex gap-3">
           <label>
             <input
@@ -47,8 +47,9 @@ const Container = () => {
               value="Template1"
               checked={template === "Template1"}
               onChange={handleTemplate}
+              className="hidden"
             />
-            <img className="w-32 " src={temp1} alt="Template 1" />
+            <img className={`w-32 cursor-pointer ${template === "Template1" && "border-4 border-primary opacity-70"}`} src={temp1} alt="Template 1" />
           </label>
           <label>
             <input
@@ -56,8 +57,9 @@ const Container = () => {
               value="Template2"
               checked={template === "Template2"}
               onChange={handleTemplate}
+              className="hidden"
             />
-            <img className="w-32" src={temp2} alt="Template 2" />
+            <img  className={`w-32 cursor-pointer ${template === "Template2" && "border-4 border-primary opacity-70"}`} src={temp2} alt="Template 2" />
           </label>
         </div>
       </div>
