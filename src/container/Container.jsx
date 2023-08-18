@@ -3,6 +3,8 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import Certificate from "../assets/Certificate.jpg";
 import { PDFController } from "../controller/pdfController";
+import temp1 from '../assets/Temp_Images/Temp-1.png'
+import temp2 from '../assets/Temp_Images/Temp-2.png'
 
 const Container = () => {
   const [template, setTemplate] = useState("Template1");
@@ -27,7 +29,7 @@ const Container = () => {
   };
 
   return (
-    <div className="w-full h-fit pb-8 flex items-center gap-5 justify-start absolute top-[10%] flex-col">
+    <div className="w-full h-fit pb-8 flex items-center gap-5 justify-start absolute top-[5%] flex-col">
       <img className="w-32" src={Certificate} alt="" />
       <div className="flex w-full flex-col justify-center items-center gap-2">
         <h1 className="font-bold text-slate-700 text-xl">
@@ -35,18 +37,29 @@ const Container = () => {
         </h1>
         <h2 className="text-sm font-light">
           This is a program to generate custom certificate
+          
         </h2>
         <p className="font-semibold text-slate-400"> select a template</p>
-        <select
-          className="p-2 border-slate-400 rounded-sm outline-none border"
-          value={template}
-          onChange={(e) => {
-            handleTemplate(e);
-          }}
-        >
-          <option value="Template1">Template-1</option>
-          <option value="Template2">Template-2</option>
-        </select>
+        <div className="flex gap-3">
+          <label>
+            <input
+              type="radio"
+              value="Template1"
+              checked={template === "Template1"}
+              onChange={handleTemplate}
+            />
+            <img className="w-32 " src={temp1} alt="Template 1" />
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="Template2"
+              checked={template === "Template2"}
+              onChange={handleTemplate}
+            />
+            <img className="w-32" src={temp2} alt="Template 2" />
+          </label>
+        </div>
       </div>
       {users.map((user, index) => (
         <Input key={index} onChange={(e) => handleName(e, index)} />
