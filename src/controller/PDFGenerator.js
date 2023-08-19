@@ -19,7 +19,6 @@ export const PDFGenerator = async (users,chosenTemplate) => {
       const dateField = form.getTextField("Date");
 
       const customFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
-
       nameField.setText(user.name);
       dateField.setText(user.date);
       nameField.updateAppearances(customFont);
