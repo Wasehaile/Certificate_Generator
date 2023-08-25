@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import Certificate from "../assets/Certificate.jpg";
-import { PDFGenerator } from "../controller/PDFGenerator";
+import { CertificatePDFGenerator } from "../controller/CertificatePDFGenerator";
 import temp1 from "../assets/Temp_Images/Temp-1.png";
 import temp2 from "../assets/Temp_Images/Temp-2.png";
 import DatePicker from "../components/DatePicker";
 import { PiCertificateThin } from "react-icons/pi";
 import { BsPersonPlus } from "react-icons/bs";
+import { TemplateCertificatePDFGenerator } from "../controller/TemplatePDFGenerator";
 const Container = () => {
   const [template, setTemplate] = useState("Template1");
+  const [bodyText,setBodyText]=useState()
   const [users, setUsers] = useState([
     {
       name: "",
@@ -22,7 +24,9 @@ const Container = () => {
     updatedUsers[index].name = e.target.value;
     setUsers(updatedUsers);
   };
-
+  const handleBody=(e)=>{
+    setBodyText(e.target.value)
+  }
   const handleDate = (e, index) => {
     const updatedUsers = [...users];
     updatedUsers[index].date = e.target.value;
@@ -86,7 +90,11 @@ const Container = () => {
           </label>
         </div>
       </div>
-      {users.map((user, index) => (
+      <textarea onChange={(e)=>handleBody(e)} rows={8} cols={50} placeholder="Add your custom certificate text" className="bg-slate-100 rounded-md text-sm p-3 outline-none border border-slate-400 " style={{ lineHeight: "1.73" }}/>
+      <Button
+       onClick={()=>TemplateCertificatePDFGenerator(bodyText)}
+       label={"Generate Custom Template"} />
+      {users.map((user,index) => (
         <div className="flex items-center gap-3">
           <Input key={index} onChange={(e) => handleName(e, index)} />
           <DatePicker onChange={(e) => handleDate(e, index)} />
@@ -94,7 +102,7 @@ const Container = () => {
       ))}
       <div className="flex w-fit gap-4">
       <Button
-        onClick={() => PDFGenerator(users, template)}
+        onClick={() => CertificatePDFGenerator(users, template)}
         label={"Generate Certificates"}
         Icon={<PiCertificateThin className="w-6 h-6" />}
       />
